@@ -6,9 +6,22 @@ var centered;
 const select = new mdc.select.MDCSelect(document.querySelector('.mdc-select'));
 const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
 const buttonRipple =  new mdc.ripple.MDCRipple(document.querySelector('.mdc-button'));
+const tabBar = new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
+const contentEls = document.querySelectorAll('.content');
+const tab_home = new mdc.tab.MDCTab(document.querySelectorAll('.mdc-tab')[0]);
+const tab_image = new mdc.tab.MDCTab(document.querySelectorAll('.mdc-tab')[1]);
+
+drawer.open = true;
+tabBar.listen('MDCTabBar:activated', (event) => activate_tab_content(event.detail.index));
+
+function activate_tab_content(index) {
+  // Hide currently-active content
+  document.querySelector('.content--active').classList.remove('content--active');
+  // Show content for newly-activated tab
+  contentEls[index].classList.add('content--active');
+}
 
 buttonRipple.listen('click',() => {
-  console.log("asdf")
   drawer.open = false;
 })
 
@@ -243,6 +256,10 @@ function click_dot(datum){
     .attr('height', 320);
   imgs.exit().remove()
   drawer.open = true;
+  tab_home.deactivate()
+  tab_image.activate()
+  activate_tab_content(1);
+
   update_radar(selected_point);
 }
 var attribs = ["wealthy", "depressing", "safety","lively","boring","beautiful"]

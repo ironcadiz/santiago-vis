@@ -78,3 +78,10 @@ body {
   position: absolute;
   right: 0;
 }
+.content {
+  display: none;
+}
+
+.content--active {
+  display: block;
+}

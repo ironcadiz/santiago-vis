@@ -18,13 +18,47 @@
 <body>
   <aside class="mdc-drawer mdc-drawer--dismissible">
       <div class="mdc-drawer__content">
+
+        <div class="mdc-tab-bar" role="tablist">
+          <div class="mdc-tab-scroller">
+            <div class="mdc-tab-scroller__scroll-area">
+              <div class="mdc-tab-scroller__scroll-content">
+                <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+                  <span class="mdc-tab__content">
+                    <span class="mdc-tab__text-label">About</span>
+                  </span>
+                  <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                  </span>
+                  <span class="mdc-tab__ripple"></span>
+                </button>
+                <button class="mdc-tab" role="tab" aria-selected="false" tabindex="1">
+                    <span class="mdc-tab__content">
+                      <span class="mdc-tab__text-label">Details</span>
+                    </span>
+                    <span class="mdc-tab-indicator">
+                      <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                    </span>
+                    <span class="mdc-tab__ripple"></span>
+                  </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <button class="mdc-button close-button">
             <div class="mdc-button__ripple"></div>
             <i class="material-icons mdc-button__icon" aria-hidden="true">close</i>
         </button>
-        <div id="radar">
-            <div id="picture"></div>
-            <div id="graph"></div>
+        <div class="content content--active">
+          <h1>
+            el lorem ipsum blablablabalbal
+          </h1>
+        </div>
+        <div class="content">
+          <div id="radar">
+              <div id="picture"></div>
+              <div id="graph"></div>
+          </div>
         </div>
       </div>
     </aside>
