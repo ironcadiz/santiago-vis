@@ -1,0 +1,80 @@
+.map-layer {
+  fill: none;
+  stroke: black;
+  stroke-width: 1px;
+  position: relative
+}
+
+body {
+  margin:0;
+  position:fixed;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  height: 100vh;
+}
+#map {
+  width: 1920px;
+  height: 1280px;
+
+}
+.main-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.dot {
+  fill-opacity : 1;
+  stroke-width: 1;
+  stroke: black;
+}
+#dropdown {
+  position:absolute;
+  z-index:1;
+  left:50%;
+  margin-left:-25%;
+  top:20px;
+}
+
+#radar #picture {
+  display: inline;
+}
+#radar #graph {
+  text-align: center;
+}
+
+.legend text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20pt;
+  fill: white;
+  stroke: black;
+  stroke-width: 0.5px
+}
+
+.mdc-drawer-app-content {
+  flex: auto;
+  overflow: auto;
+  position: relative;
+}
+
+.mdc-drawer{
+  width: 30vw;
+}
+
+.main-content {
+  overflow: auto;
+  height: 100%;
+}
+
+.app-bar {
+  position: absolute;
+}
+
+.close-button {
+  position: absolute;
+  right: 0;
+}

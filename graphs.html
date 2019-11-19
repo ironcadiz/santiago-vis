@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rank visualization</title>
+    <link rel="stylesheet" href="style.css" charset="utf-8">
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+  </head>
+  <body>
+    <div id="title">
+      <h1>Rank visualization</h1>
+    </div>
+
+
+    <h4>Ranked Images Plot</h4>
+    <p>
+      <form id="sampling-form">
+        <input type="number" value="200" id="sample-size" title="Sample Size">
+        <button id="button_resample" type="button"> Sample </button>
+      </form>
+    </p>    
+    <div id="graphs">
+      <div id="plot">
+        <select id="selectButtonY"></select>
+        <div id="images"></div>
+        <select id="selectButtonX"></select>
+      </div>
+
+      <script src="images.js" charset="utf-8"></script>
+    </div>
+
+  </body>
+</html>
