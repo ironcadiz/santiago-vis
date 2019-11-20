@@ -1,17 +1,22 @@
 var width = 1920
 var height = 1280
 var centered;
+var sampleSize = 5000;
 
 // md components setup
 const select = new mdc.select.MDCSelect(document.querySelector('.mdc-select'));
 const drawer = mdc.drawer.MDCDrawer.attachTo(document.querySelector('.mdc-drawer'));
-const buttonRipple =  new mdc.ripple.MDCRipple(document.querySelector('.mdc-button'));
+const buttonClose =  new mdc.ripple.MDCRipple(document.querySelectorAll('.mdc-button')[0]);
+const buttonSample =  new mdc.ripple.MDCRipple(document.querySelectorAll('.mdc-button')[1]);
 const tabBar = new mdc.tabBar.MDCTabBar(document.querySelector('.mdc-tab-bar'));
 const contentEls = document.querySelectorAll('.content');
 const tab_home = new mdc.tab.MDCTab(document.querySelectorAll('.mdc-tab')[0]);
 const tab_image = new mdc.tab.MDCTab(document.querySelectorAll('.mdc-tab')[1]);
+const textField = new mdc.textField.MDCTextField(document.querySelector('.mdc-text-field'));
 
 drawer.open = true;
+textField.value = sampleSize;
+
 tabBar.listen('MDCTabBar:activated', (event) => activate_tab_content(event.detail.index));
 
 function activate_tab_content(index) {
@@ -21,9 +26,10 @@ function activate_tab_content(index) {
   contentEls[index].classList.add('content--active');
 }
 
-buttonRipple.listen('click',() => {
+buttonClose.listen('click',() => {
   drawer.open = false;
 })
+
 
 select.listen('MDCSelect:change', () => {
   // recover the option that has been chosen
@@ -109,7 +115,7 @@ var transform = d3.geoTransform({point:projectPoint});
 var path = d3.geoPath().projection(transform);
 
 var cat = 'wealthy'
-var sampleSize = 5000;
+
 var sample = []
 
 var colorScales = {
@@ -168,6 +174,38 @@ d3.csv("data/santiago_rank.csv", function(data) {
       .on("click",click_dot)
       .transition().duration(1000)
       .attr("r", 4)
+
+  buttonSample.listen('click', () => {
+        sampleSize = Math.max(Math.min(Number(textField.value),80000),0)
+        textField.value = sampleSize;
+        sample = []
+        for(var i = 0; i < sampleSize; i++){
+          index = Math.floor(Math.random()*data.length);
+          selected_point = data[index]
+          sample.push(selected_point)
+        }
+        sample.forEach(function(d) {
+          d.rank = +d[cat]
+          d.file = d['id']
+          var aux  = d['id'].slice(0,-4).split(",").map((n) => Number(n))
+          d.lat = aux[0]
+          d.lng = aux[1]
+          d.cx =  project(d).x
+          d.cy =  project(d).y
+        });
+
+        dots = dotLayer.selectAll("circle")
+              .data(sample)
+        dots.enter().append("circle").classed("dot", true)
+            .attr("r", 1)
+            .attr("cx", (d) => d.cx)
+            .attr("cy", (d) => d.cy)
+            .attr("fill",d => colorScales[cat](d[cat]))
+            .on("click",click_dot)
+            .transition().duration(1000)
+            .attr("r", 4)
+        dots.exit().transition().duration(1000).attr("r", 0).remove()
+      })
 
   function render_dots(sample) {
       sample.forEach(function(d) {
