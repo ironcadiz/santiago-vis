@@ -78,7 +78,12 @@ var svg = d3.select(container)
 var image_svg = d3.select('#radar').select('#picture')
     .append("svg")
     .attr("width", 500)
-    .attr("height", 400);
+    .attr("height", 400)
+image_svg.append("text")
+    .attr("x",250)
+    .attr("y",200)
+    .attr("text-anchor","middle")
+    .text("Clickea un punto para ver la imagen")
 
 var radar_svg = d3.select('#radar').select('#graph')
     .append("svg")
@@ -165,7 +170,7 @@ d3.csv("data/santiago_rank.csv", function(data) {
     d.cy =  project(d).y
   });
   dots = dotLayer.selectAll("circle")
-        .data(sample)
+        .data(sample, d => d.file)
   dots.enter().append("circle").classed("dot", true)
       .attr("r", 1)
       .attr("cx", (d) => d.cx)
@@ -195,7 +200,7 @@ d3.csv("data/santiago_rank.csv", function(data) {
         });
 
         dots = dotLayer.selectAll("circle")
-              .data(sample)
+              .data(sample, d => d.file)
         dots.enter().append("circle").classed("dot", true)
             .attr("r", 1)
             .attr("cx", (d) => d.cx)
@@ -208,13 +213,9 @@ d3.csv("data/santiago_rank.csv", function(data) {
       })
 
   function render_dots(sample) {
-      sample.forEach(function(d) {
-        d.cx =  project(d).x
-        d.cy =  project(d).y
-      });
-      mapLayer.selectAll("circle").data(sample)
-      .attr("cx", (d) => d.cx)
-      .attr("cy", (d) => d.cy)
+      dotLayer.selectAll("circle")
+      .attr("cx", (d) => project(d).x)
+      .attr("cy", (d) => project(d).y)
     }
     // re-render our visualization whenever the view changes
     map.on("viewreset", function() {
