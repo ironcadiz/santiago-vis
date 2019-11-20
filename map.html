@@ -64,8 +64,8 @@
     </aside>
   <div class="mdc-drawer-app-content" id="wrapper">
     <div id="map">
-      <div id="dropdown">
-          <div class="mdc-select">
+      <div id="interface">
+          <div class="mdc-select interface-item">
               <div class="mdc-select__anchor demo-width-class">
                 <i class="mdc-select__dropdown-icon"></i>
                 <div class="mdc-select__selected-text"></div>
@@ -95,15 +95,17 @@
                 </ul>
               </div>
             </div>
-            <div class="mdc-text-field">
-              <input type="number" id="my-text-field" class="mdc-text-field__input">
-              <label class="mdc-floating-label" for="my-text-field">Tamaño de la  muestra</label>
-              <div class="mdc-line-ripple"></div>
+            <div class="interface-sample interface-item">
+              <div class="mdc-text-field interface-item" >
+                <input type="number" id="my-text-field" class="mdc-text-field__input">
+                <label class="mdc-floating-label" for="my-text-field">Tamaño de la  muestra</label>
+                <div class="mdc-line-ripple"></div>
+              </div>
+              <button class="mdc-button mdc-button--raised interface-item">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">Muestrear</span>
+              </button>
             </div>
-            <button class="mdc-button mdc-button--raised">
-              <div class="mdc-button__ripple"></div>
-              <span class="mdc-button__label">Muestrear</span>
-          </button>
       </div>
     </div>
   </div>

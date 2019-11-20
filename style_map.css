@@ -32,12 +32,27 @@ body {
   stroke-width: 1;
   stroke: black;
 }
-#dropdown {
+#interface {
   position:absolute;
   z-index:1;
-  left:50%;
+  left: 50vw;
   margin-left:-25%;
   top:20px;
+}
+
+#interface .interface-item {
+  margin: 0 10px 0 10px;
+  display: inline-block;
+}
+
+#interface .interface-sample {
+  position: relative;
+  left: 10vw;
+}
+
+.mdc-text-field {
+  position: relative;
+  top: 15px ;
 }
 
 #radar {
