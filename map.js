@@ -85,7 +85,7 @@ var svg = d3.select(container)
 var image_svg = d3.select('#radar').select('#picture')
     .append("svg")
     .attr("width", 500)
-    .attr("height", 400)
+    .attr("height", 350)
 image_svg.append("text")
     .attr("x",250)
     .attr("y",200)
@@ -95,7 +95,7 @@ image_svg.append("text")
 var radar_svg = d3.select('#radar').select('#graph')
     .append("svg")
     .attr("width", 500)
-    .attr("height", 450);
+    .attr("height", 500);
 
 var mapLayer = svg.append('g')
   .classed('map-layer', true);
@@ -309,24 +309,35 @@ function click_dot(datum){
   update_radar(selected_point);
 }
 var attribs = ["wealthy", "depressing", "safety","lively","boring","beautiful"]
+var translates = {
+  "wealthy": "Riqueza",
+  "depressing": "Depresividad",
+  "safety": "Seguridad",
+  "lively": "Vivacidad",
+  "boring": "Aburrimiento",
+  "beautiful": "Belleza",
+}
+
 
 let radialScale = d3.scaleLinear()
 .domain([-5,5])
 .range([0,200]);
 let ticks = [-5,-3,-1,1,3,5];
+var xCenter = 225
+var yCenter = 250
 init_radar();
 
 function init_radar() {
     var axises = radar_svg.selectAll('circle').data(ticks).enter().append("circle")
-    .attr("cx", 225)
-    .attr("cy", 225)
+    .attr("cx", xCenter)
+    .attr("cy", yCenter)
     .attr("fill", "none")
     .attr("stroke", "gray")
     .attr("r", d => radialScale(d));
 
     var  txts = radar_svg.selectAll('text').data(ticks).enter().append('text')
-        .attr("x", 230)
-        .attr("y", d => (225 - radialScale(d)))
+        .attr("x", xCenter + 5)
+        .attr("y", d => (yCenter - radialScale(d)))
         .text(d => d)
 
     attribs.forEach((element, index) => {
@@ -337,8 +348,8 @@ function init_radar() {
 
       //draw axis line
       radar_svg.append("line")
-      .attr("x1", 225)
-      .attr("y1", 225)
+      .attr("x1", xCenter)
+      .attr("y1", yCenter)
       .attr("x2", line_coordinate.x)
       .attr("y2", line_coordinate.y)
       .attr("stroke","black");
@@ -347,14 +358,13 @@ function init_radar() {
       var label = radar_svg.append("text")
       .attr("x", label_coordinate.x)
       .attr("y", label_coordinate.y)
-      .text(ft_name);
+      .text(translates[ft_name])
+      .attr('text-anchor','middle')
 
       if (angle > (Math.PI / 2) && angle < (Math.PI / 2)*3) {
-        label.attr('text-anchor','end')
+        label.attr("transform",`rotate(${270 - angle* (180/Math.PI) + 180 },${label_coordinate.x},${label_coordinate.y})`)
       } else if (angle < (Math.PI / 2) || angle > (Math.PI / 2)*3) {
-        label.attr('text-anchor','start')
-      } else {
-        label.attr('text-anchor','middle')
+        label.attr("transform",`rotate(${90 - angle* (180/Math.PI)},${label_coordinate.x},${label_coordinate.y})`)
       }
     })
 }
@@ -369,7 +379,7 @@ function indexToAngle(i,len) {
 function angleToCoordinate(angle, value){
   let x = Math.cos(angle) * radialScale(value);
   let y = Math.sin(angle) * radialScale(value);
-  return {"x": 225 + x, "y": 225 - y};
+  return {"x": xCenter + x, "y": yCenter - y};
 }
 function getPathCoordinates(data_point){
   coordinates = attribs.map( (attribute,i) => {
