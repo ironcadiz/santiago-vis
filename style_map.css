@@ -17,8 +17,8 @@ body {
   height: 100vh;
 }
 #map {
-  width: 1920px;
-  height: 1280px;
+  width: 100vw;
+  height: 100vh;
 
 }
 .main-svg {
@@ -31,6 +31,7 @@ body {
   fill-opacity : 1;
   stroke-width: 1;
   stroke: black;
+  cursor: default;
 }
 #interface {
   position:absolute;
@@ -41,7 +42,7 @@ body {
 }
 
 #interface .interface-item {
-  margin: 0 10px 0 10px;
+  margin: 0 5vw 0 0;
   display: inline-block;
 }
 
@@ -96,4 +97,28 @@ body {
 
 .content--active {
   display: block;
+}
+
+.mdc-drawer__title {
+  font-size: 36pt;
+}
+
+.mdc-drawer__subtitle {
+  font-size: 1.3rem;
+}
+.main-text {
+  margin: 1rem 1rem 1rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+
+.about-footer {
+  position: relative;
+  top: 5vh;
+  text-align: center;
+  width: 100%;
+}
+
+.about-footer i {
+  font-size: 8pt;
 }

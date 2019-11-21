@@ -25,7 +25,7 @@
               <div class="mdc-tab-scroller__scroll-content">
                 <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
                   <span class="mdc-tab__content">
-                    <span class="mdc-tab__text-label">About</span>
+                    <span class="mdc-tab__text-label">Sobre</span>
                   </span>
                   <span class="mdc-tab-indicator mdc-tab-indicator--active">
                     <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
@@ -34,7 +34,7 @@
                 </button>
                 <button class="mdc-tab" role="tab" aria-selected="false" tabindex="1">
                     <span class="mdc-tab__content">
-                      <span class="mdc-tab__text-label">Details</span>
+                      <span class="mdc-tab__text-label">Detalles</span>
                     </span>
                     <span class="mdc-tab-indicator">
                       <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
@@ -50,9 +50,25 @@
             <i class="material-icons mdc-button__icon" aria-hidden="true">close</i>
         </button>
         <div class="content content--active">
-          <h1>
-            el lorem ipsum blablablabalbal
-          </h1>
+          <div class="mdc-drawer__header">
+              <h3 class="mdc-drawer__title">Visualizando Sant.IA.go</h3><br>
+              <h6 class="mdc-drawer__subtitle">Graficando la percepción urbana mediante Inteligencia artificial.</h6>
+            </div>
+          <hr class="mdc-list-divider">
+          <p class="main-text">
+            A la derecha puedes ver un mapa interactivo de Santiago, cada punto representa un lugar
+            que fue analizado por una red neuronal entrenada para emular la percepción humana de
+            un espacio según 6 atributos distintos. El trabajo se basa principalmente en estos dos papers:
+            <a href="https://arxiv.org/abs/1608.01769">1</a> y
+            <a href="https://www.sciencedirect.com/science/article/pii/S0169204618310260">2</a>. <br>
+            Los puntos que ves a la derecha son una pequeña muestra aleatoria del total. Puedes cambiar el
+            tamaño de la muestra cambiando el número y clickeando botón de arriba. Ojo con aumentarlo mucho que quizás tu dispositivo no aguante. <br>
+            <br>
+            <div class="about-footer">
+                <hr class="mdc-list-divider">
+                Made with <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i> by <a href="https://github.com/ironcadiz">@ironcadiz</a>
+            </div>
+          </p>
         </div>
         <div class="content">
           <div id="radar">
