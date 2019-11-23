@@ -19,6 +19,7 @@ body {
 #map {
   width: 100vw;
   height: 100vh;
+  position: absolute;
 
 }
 .main-svg {
@@ -33,17 +34,20 @@ body {
   stroke: black;
   cursor: default;
 }
+
 #interface {
   position:absolute;
   z-index:1;
-  left: 50vw;
-  margin-left:-25%;
-  top:20px;
+  left: 12vw;
+  top: 5vh;
+  vertical-align: top
 }
 
 #interface .interface-item {
   margin: 0 5vw 0 0;
   display: inline-block;
+  vertical-align: top;
+  margin-top: 5px;
 }
 
 #interface .interface-sample {
@@ -51,9 +55,26 @@ body {
   left: 10vw;
 }
 
+@media (max-width: 800px) {
+  #interface {
+    left: 8vw;
+  }
+  #interface .interface-item {
+    margin: 0 0 0 0;
+    display: block;
+  }
+
+  #interface .interface-sample {
+    position: relative;
+    top: 1rem;
+    left: 0vw;
+  }
+  #interface .mdc-text-field {
+    margin: 0 0.5rem 0.5rem 0
+  }
+}
 .mdc-text-field {
   position: relative;
-  top: 15px ;
 }
 
 #radar {
@@ -76,6 +97,12 @@ body {
 
 .mdc-drawer{
   width: 30vw;
+}
+
+@media (max-width: 800px) {
+  .mdc-drawer{
+    width: 80vw;
+  }
 }
 
 .main-content {
