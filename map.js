@@ -21,6 +21,23 @@ const tab_home = new mdc.tab.MDCTab(document.querySelectorAll('.mdc-tab')[0]);
 const tab_image = new mdc.tab.MDCTab(document.querySelectorAll('.mdc-tab')[1]);
 const textField = new mdc.textField.MDCTextField(document.querySelector('.mdc-text-field'));
 
+var xDown = null, yDown = null, xUp = null, yUp = null;
+document.addEventListener('touchstart', touchstart, false);
+document.addEventListener('touchmove', touchmove, false);
+document.addEventListener('touchend', touchend, false);
+function touchstart(evt) { const firstTouch = (evt.touches || evt.originalEvent.touches)[0]; xDown = firstTouch.clientX; yDown = firstTouch.clientY; }
+function touchmove(evt) { if (!xDown || !yDown ) return; xUp = evt.touches[0].clientX; yUp = evt.touches[0].clientY; }
+function touchend(evt) {
+    var xDiff = xUp - xDown, yDiff = yUp - yDown;
+    if ((Math.abs(xDiff) > Math.abs(yDiff)) && (Math.abs(xDiff) > 0.33 * document.body.clientWidth)) {
+        if (xDiff >= 0)
+          console.log("swaip")
+          drawer.open = false
+    }
+    xDown = null, yDown = null;
+}
+
+
 drawer.open = true;
 textField.value = sampleSize;
 
