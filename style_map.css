@@ -84,7 +84,7 @@ body {
 
 .legend {
   position: absolute;
-  bottom: 20vh;
+  bottom: 15vh;
   left: 25vw;
   stroke: black;
 }
@@ -117,6 +117,7 @@ body {
 
 .mdc-drawer{
   width: 30vw;
+  overflow: hidden;
 }
 
 @media (max-width: 850px) {
@@ -164,6 +165,21 @@ body {
   top: 5vh;
   text-align: center;
   width: 100%;
+}
+
+@media (max-width: 850px) {
+  .mdc-drawer__title {
+    font-size: 24pt;
+  }
+  .mdc-drawer__subtitle {
+    font-size: 1.2rem;
+  }
+
+  .main-text {
+    margin: 1rem 1rem 1rem 1rem;
+    font-size: 1rem;
+    font-weight: 100;
+  }
 }
 
 .about-footer i {

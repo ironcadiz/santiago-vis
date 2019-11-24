@@ -101,8 +101,9 @@ var svg = d3.select(container)
 
 var image_svg = d3.select('#radar').select('#picture')
     .append("svg")
-    .attr("width", 500)
-    .attr("height", 350)
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0 500 350")
+
 image_svg.append("text")
     .attr("x",250)
     .attr("y",200)
@@ -111,8 +112,10 @@ image_svg.append("text")
 
 var radar_svg = d3.select('#radar').select('#graph')
     .append("svg")
-    .attr("width", 500)
-    .attr("height", 500);
+    // .attr("width", 500)
+    // .attr("height", 500);
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "0 0 500 500")
 
 var mapLayer = svg.append('g')
   .classed('map-layer', true);
