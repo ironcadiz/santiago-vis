@@ -252,16 +252,15 @@ d3.csv("data/santiago_rank.csv", function(data) {
 
 
 // add the legend now
-var legend_w = "50vw", legend_h = 70;
+var legend_w = isMobile ? "80vw" : "50vw", legend_h = isMobile ? 60 : 70;
 
 lColors = legendColors(cat)
-var key = mapLayer
+var key = d3.select(container)
   .append("svg")
   .attr("width", legend_w)
   .attr("height", legend_h)
   .classed("legend",true)
-  .attr("x","25vw")
-  .attr("y","80vh")
+
 
 var legend = key.append("defs")
   .append("svg:linearGradient")
@@ -285,19 +284,19 @@ key.append("rect")
   .style("fill", "url(#gradient)")
   .attr("transform", "translate(0,10)");
 
-key.append("g")
+key
   .append("text")
   .attr("y", 0)
   .attr("dy", "1.5em")
   .text(legendTexts[cat][0])
   .attr("id","left-legend-text")
 
-key.append("g")
+key
   .append("text")
   .attr("y", 0)
-  .attr("x",legend_w)
+  .attr("x", "100%")
   .attr("dy", "1.5em")
-  .style("text-anchor", "end")
+  .attr("text-anchor", "end")
   .text(legendTexts[cat][1])
   .attr("id","right-legend-text")
 
