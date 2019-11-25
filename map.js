@@ -29,9 +29,8 @@ function touchstart(evt) { const firstTouch = (evt.touches || evt.originalEvent.
 function touchmove(evt) { if (!xDown || !yDown ) return; xUp = evt.touches[0].clientX; yUp = evt.touches[0].clientY; }
 function touchend(evt) {
     var xDiff = xUp - xDown, yDiff = yUp - yDown;
-    if ((Math.abs(xDiff) > Math.abs(yDiff)) && (Math.abs(xDiff) > 0.33 * document.body.clientWidth)) {
-        if (xDiff >= 0)
-          console.log("swaip")
+    if ((Math.abs(xDiff) > Math.abs(yDiff)) && (Math.abs(xDiff) > 0.4 * document.body.clientWidth)) {
+        if (xDiff <= 0)
           drawer.open = false
     }
     xDown = null, yDown = null;
@@ -342,7 +341,7 @@ let radialScale = d3.scaleLinear()
 .domain([-5,5])
 .range([0,200]);
 let ticks = [-5,-3,-1,1,3,5];
-var xCenter = 225
+var xCenter = 250
 var yCenter = 250
 init_radar();
 
